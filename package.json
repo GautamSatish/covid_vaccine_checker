@@ -1,0 +1,17 @@
+{
+  "name": "covid_vaccine_checker",
+  "version": "1.0.0",
+  "description": "Simple script to check for vaccination slot availability periodically",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "covid",
+    "covid19",
+    "vaccine"
+  ],
+  "author": "gautams@hpe.com",
+  "license": "MIT",
+  "dependencies": {}
+}
