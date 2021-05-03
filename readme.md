@@ -10,7 +10,7 @@ Fetch the COVID-19 vaccination slots using the Co-WIN APIs
 
 ## Installation & Setup
 
-- Clone the repo: `git clone https://github.com/GautamSatish/restful_web_services.git`
+- Clone the repo: `git clone https://github.com/GautamSatish/covid_vaccine_checker.git`
 - Fill the required parameters in config.json
 - Start the script: `node index.js`
 - Use CTRL + C to terminate script
