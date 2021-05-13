@@ -7,7 +7,7 @@ let formattedDate = '';
 
 const checkAppointments = function () {
   console.log(`Running check at ${new Date()}`);
-  for (let i = 0; i < config.dayCount; i++ ) {
+  for (let i = 0; i < config.dayCount; i++) {
     // API date format is DD-MM-YYYY
     formattedDate = (time.getDate() + i) + "-" + (time.getMonth() + 1) + "-" + time.getFullYear();
     // console.log(`Looking for appointments on ${formattedDate}`);
@@ -24,22 +24,29 @@ const checkAppointments = function () {
       resp.on('end', () => {
 
         try {
-          let centers = JSON.parse(data).centers;
-          centers.forEach(center => { 
-            center.sessions.forEach(session => {
-              if ((config.minAge >= session.min_age_limit) && (session.available_capacity > 0 )) {
-                slotAvailable = true;
-                console.log(`${session.available_capacity} slots available at ${center.name}[${center.center_id}], ${center.block_name} ${center.district_name} on ${session.date}.`);
-              }
+          let d = JSON.parse(data);
+          let centers;
+          if (d.hasOwnProperty('centers')) {
+            centers = d.centers;
+            centers.forEach(center => {
+              center.sessions.forEach(session => {
+                if ((config.minAge >= session.min_age_limit) && (session.available_capacity > 0)) {
+                  slotAvailable = true;
+                  console.log(`${session.available_capacity} slots available at ${center.name}[${center.center_id}], ${center.block_name} ${center.district_name} on ${session.date}.`);
+                }
+              });
             });
-          });
-  
-          // Sound the Beeper if slot is found.
-          if (config.soundNotify && slotAvailable )
-            cp.exec(`rundll32 user32.dll,MessageBeep`);
-            
-        } catch(err) {
-          console.log("Error: " + err);
+
+            // Sound the Beeper if slot is found.
+            if (config.soundNotify && slotAvailable)
+              cp.exec(`rundll32 user32.dll,MessageBeep`);
+          } else {
+            console.log(`Unexpected response: ${data}.`);
+          }
+
+        } catch (err) {
+          if (err.message.includes("Unexpected token < in JSON at position 0")) console.log("Error: Could not connect, there might be too much traffic.")
+          else console.log("Error: " + err);
         }
 
       });
