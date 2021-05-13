@@ -8,8 +8,8 @@
   "_comment - dayCount": "Number of days from today to check for slots.",
   "dayCount": 7,
 
-  "_comment - checkInterval": "Polling interval in minutes.",
-  "checkInterval": 1,
+  "_comment - checkInterval": "Polling interval in seconds.",
+  "checkInterval": 5,
 
   "_comment - soundNotify": "true or false",
   "soundNotify": true

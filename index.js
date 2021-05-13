@@ -51,4 +51,4 @@ const checkAppointments = function () {
   // console.log(`Sleeping till next interval...`);
 }
 checkAppointments();
-setInterval(checkAppointments, config.checkInterval * 60000);
+setInterval(checkAppointments, config.checkInterval * 1000);
