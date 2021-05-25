@@ -30,9 +30,9 @@ const checkAppointments = function () {
             centers = d.centers;
             centers.forEach(center => {
               center.sessions.forEach(session => {
-                if ((config.minAge >= session.min_age_limit) && (session.available_capacity > 0)) {
+                if ((config.minAge >= session.min_age_limit) && (session.available_capacity_dose1 > 0)) {
                   slotAvailable = true;
-                  console.log(`${session.available_capacity} slots available at ${center.name}[${center.center_id}], ${center.block_name} ${center.district_name} on ${session.date}.`);
+                  console.log(`${session.available_capacity_dose1} dose 1 slots available at ${center.name}[${center.center_id}], ${center.block_name} ${center.district_name} on ${session.date}.`);
                 }
               });
             });
